@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/utilities/routes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -55,7 +56,10 @@ class LoginPage extends StatelessWidget {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  //Implement authorization check here before logging into the home page
+                  Navigator.pushNamed(context, MyRoutes.homeRoute);
+                },
                 // onHover: ,
                 style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.blueAccent),

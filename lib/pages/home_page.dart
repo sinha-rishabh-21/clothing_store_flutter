@@ -5,6 +5,7 @@ import 'package:shopping_app/models/catalog.dart';
 import 'package:shopping_app/pages/item_tile.dart';
 import 'package:shopping_app/pages/search_bar.dart';
 import 'package:shopping_app/utilities/fetch_data.dart';
+import 'package:shopping_app/utilities/routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,8 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final url = "https://fakestoreapi.com/products/";
-
+  //Yaha ka URL change krna pad skta hai barr barr due to dynamic IP addressing
+  final url = "http://192.168.216.51:8002/products";
   late FetchData ftObj;
 
   @override
@@ -48,7 +49,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: const Icon(CupertinoIcons.cart),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, MyRoutes.cartRoute);
+            },
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/models/cart_model.dart';
 import 'package:shopping_app/models/catalog.dart';
 
 class ItemTile extends StatelessWidget {
@@ -28,7 +29,7 @@ class ItemTile extends StatelessWidget {
               height: 100,
               width: 120,
               child: Image.network(
-                item.imageUrl,
+                item.image,
                 color: const Color.fromARGB(255, 246, 246, 246),
                 colorBlendMode: BlendMode.darken,
               )),
@@ -45,7 +46,7 @@ class ItemTile extends StatelessWidget {
                         fontFamily: 'Poppins', fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    item.description, maxLines: 3, // Limit text to 3 lines
+                    item.desc, maxLines: 3, // Limit text to 3 lines
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(fontFamily: 'Poppins', fontSize: 12),
                   )
@@ -62,13 +63,19 @@ class ItemTile extends StatelessWidget {
               Text(
                 '\$${item.price.toString()}',
                 style: const TextStyle(
-                    color: Colors.cyan, fontWeight: FontWeight.bold),
+                    color: Color.fromARGB(255, 34, 20, 66),
+                    fontWeight: FontWeight.bold),
               ),
               IconButton(
                 icon: const Icon(
                   CupertinoIcons.cart_badge_plus,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Item obj = Catalog.getById(id: item.id);
+
+                  CartCatalog.products.add(
+                      Prod(id: obj.id, title: obj.title, price: obj.price));
+                },
               ),
             ],
           )
