@@ -1,14 +1,24 @@
 import 'dart:convert';
 
 class CartCatalog {
-  static List<Prod> products = [];
+  // static List<Prod> products = [];
 
-  static Prod getById({required String id}) =>
+  // static Prod getById({required String id}) =>
+  //     products.firstWhere((element) => element.id == id);
+  // static void removeById({required String id}) =>
+  //     products.removeWhere((element) => element.id == id);
+
+  // static num getTotalPrice() {
+  //   return products.fold(0, (sum, item) => sum + item.price);
+  // }
+  List<Prod> products = [];
+
+  Prod getById({required String id}) =>
       products.firstWhere((element) => element.id == id);
-  static void removeById({required String id}) =>
+  void removeById({required String id}) =>
       products.removeWhere((element) => element.id == id);
 
-  static num getTotalPrice() {
+  num getTotalPrice() {
     return products.fold(0, (sum, item) => sum + item.price);
   }
 }

@@ -2,9 +2,13 @@
 import 'dart:convert';
 
 class Catalog {
-  static List<Item> items = [];
+  // static List<Item> items = [];
 
-  static Item getById({required String id}) =>
+  // static Item getById({required String id}) =>
+  //     items.firstWhere((element) => element.id == id);
+  List<Item> items = [];
+
+  Item getById({required String id}) =>
       items.firstWhere((element) => element.id == id);
 }
 

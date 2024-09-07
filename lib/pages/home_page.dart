@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/models/catalog.dart';
+import 'package:shopping_app/core/store.dart';
 //import 'package:shopping_app/pages/home_categories.dart';
 import 'package:shopping_app/pages/item_tile.dart';
 import 'package:shopping_app/pages/search_bar.dart';
 import 'package:shopping_app/utilities/fetch_data.dart';
 import 'package:shopping_app/utilities/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //Yaha ka URL change krna pad skta hai barr barr due to dynamic IP addressing
-  final url = "http://192.168.216.51:8002/products";
+  final url = "http://192.168.84.88:8002/products";
   late FetchData ftObj;
 
   @override
@@ -34,13 +35,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final MyStore store =
+        VxState.store as MyStore; //this line is important to accesss store
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 246, 246, 246),
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(CupertinoIcons.bars),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Scaffold.of(context).openDrawer();
+        //   },
+        //   icon: const Icon(CupertinoIcons.bars),
+        // ),
         backgroundColor: const Color.fromARGB(255, 246, 246, 246),
         title: const Text(
           "Hi, Rishabh",
@@ -54,6 +59,19 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ],
+      ),
+      drawer: Drawer(
+        backgroundColor: const Color.fromARGB(255, 246, 246, 246),
+        child: ListView(
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            "Home".text.xl2.make(),
+            "Settings".text.xl2.make(),
+            "Help".text.xl2.make()
+          ],
+        ).p(10),
       ),
       body: SafeArea(
         child: Column(
@@ -76,11 +94,11 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10),
             // Wrap ListView.builder with Expanded
             Expanded(
-              child: (Catalog.items.isNotEmpty)
+              child: (store.catalog.items.isNotEmpty)
                   ? ListView.builder(
-                      itemCount: Catalog.items.length,
+                      itemCount: store.catalog.items.length,
                       itemBuilder: (context, index) =>
-                          ItemTile(item: Catalog.items[index]),
+                          ItemTile(item: store.catalog.items[index]),
                     )
                   : const Center(
                       child: CircularProgressIndicator(),

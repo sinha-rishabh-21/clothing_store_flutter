@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/models/cart_model.dart';
+import 'package:shopping_app/buttons/add_to_cart.dart';
 import 'package:shopping_app/models/catalog.dart';
 
 class ItemTile extends StatelessWidget {
@@ -10,7 +9,6 @@ class ItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return CardWidget(item: item);
     return Container(
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(15)),
@@ -66,17 +64,7 @@ class ItemTile extends StatelessWidget {
                     color: Color.fromARGB(255, 34, 20, 66),
                     fontWeight: FontWeight.bold),
               ),
-              IconButton(
-                icon: const Icon(
-                  CupertinoIcons.cart_badge_plus,
-                ),
-                onPressed: () {
-                  Item obj = Catalog.getById(id: item.id);
-
-                  CartCatalog.products.add(
-                      Prod(id: obj.id, title: obj.title, price: obj.price));
-                },
-              ),
+              AddToCart(item: item),
             ],
           )
         ],
