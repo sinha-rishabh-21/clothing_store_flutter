@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+For the backend of the programs, refer to [Clothing Backend](https://github.com/username/repo)
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
