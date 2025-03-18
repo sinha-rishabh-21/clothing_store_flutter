@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-For the backend of the programs, refer to [Clothing Backend](https://github.com/username/repo)
+For the backend of the programs, refer to [Clothing Backend]([https://github.com/username/repo](https://github.com/sinha-rishabh-21/clothing_store_backend))
 
 
 ## Getting Started
